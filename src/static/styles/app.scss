@@ -4,3 +4,23 @@
   border: 1px solid #333;
   color: #999;
 }
+
+.pt-aside {
+  width: 10%;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  section {
+    margin: 0.5rem 0;
+  }
+
+  label {
+    width: 30%;
+  }
+
+  input[type="text"] {
+    width: 45%;
+    text-align: right;
+  }
+}
