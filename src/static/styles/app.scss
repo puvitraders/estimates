@@ -1,3 +1,9 @@
+@media print {
+  .pt-no-print {
+    visibility: hidden;
+  }
+}
+
 .pt-company {
   display: inline-block;
   padding: 1.5rem;

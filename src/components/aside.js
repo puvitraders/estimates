@@ -8,14 +8,19 @@ const Aside = ({ tax, updateTax }) => {
   };
 
   return (
-    <div className="bg-light pt-aside p-1 border">
+    <div className="bg-light pt-aside p-1 border pt-no-print">
       <section>
         <label>Tax</label>
         <input type="text" value={tax} onChange={update} />
         <span>%</span>
       </section>
       <section>
-        <button className="btn btn-sm btn-block btn-secondary">Print</button>
+        <button
+          className="btn btn-sm btn-block btn-secondary"
+          onClick={() => window.print()}
+        >
+          Print
+        </button>
       </section>
     </div>
   );

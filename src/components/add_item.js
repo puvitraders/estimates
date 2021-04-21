@@ -1,5 +1,5 @@
 const AddItem = () => (
-  <div className="bg-light fixed-bottom p-3">
+  <div className="bg-light fixed-bottom p-3 pt-no-print">
     <div className="row-col-12">
       <h6 className="text-center">Add an item</h6>
     </div>
