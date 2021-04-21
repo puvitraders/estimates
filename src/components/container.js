@@ -4,14 +4,15 @@ import AddItem from "./add_item";
 import Aside from "./aside";
 import Header from "./header";
 import Products from "./products";
+import Summary from "./summary";
 
 class Container extends React.Component {
   state = {
     items: [],
-    quantity: 0,
-    amount: 0.0,
     tax: 18
   };
+
+  count = 0;
 
   updateState = (s) => {
     this.setState(s);
@@ -24,9 +25,16 @@ class Container extends React.Component {
       <div className="container">
         <Header />
         <Aside tax={tax} updateTax={(tax) => this.updateState({ tax })} />
-        <Products />
-        {tax}
-        <AddItem />
+        <Products
+          items={items}
+          tax={tax}
+          updateItems={(items) => this.updateState({ items })}
+        />
+        <AddItem
+          key={++this.count}
+          addNewItem={(item) => this.setState({ items: [...items, item] })}
+        />
+        <Summary items={items} tax={tax} />
       </div>
     );
   }
