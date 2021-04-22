@@ -1,5 +1,6 @@
 import React from "react";
 import "../static/styles/app.scss";
+import Action from "./action";
 import AddItem from "./add_item";
 import Aside from "./aside";
 import Company from "./company";
@@ -28,24 +29,32 @@ class Container extends React.Component {
     return (
       <div className="container">
         <Header />
+
         <Company />
-        <Aside tax={tax} updateTax={(tax) => this.updateState({ tax })} />
+        {/* <Aside tax={tax} updateTax={(tax) => this.updateState({ tax })} /> */}
+
         <Customer
           customer={customer}
           date={date}
           updateCustomer={(customer) => this.updateState({ customer })}
         />
+
         <Products
           items={items}
           tax={tax}
           updateItems={(items) => this.updateState({ items })}
         />
+
         <AddItem
           key={++this.count}
           addNewItem={(item) => this.setState({ items: [...items, item] })}
         />
+
         <Summary items={items} tax={tax} />
+
         <div className="pt-bottom">&#160;</div>
+
+        <Action tax={tax} updateTax={(tax) => this.updateState({ tax })} />
       </div>
     );
   }

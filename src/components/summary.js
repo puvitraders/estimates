@@ -4,7 +4,7 @@ const Summary = ({ items, tax }) => {
   const total = subTotal + taxes;
 
   return (
-    <div className="pt-summary mt-5">
+    <div className="pt-summary mt-3">
       <div className="row-col-3 offset-9">
         <div className="row-col-12 py-2 bg-light text-center border">
           Summary

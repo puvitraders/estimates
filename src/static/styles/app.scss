@@ -66,3 +66,9 @@ $border: 1px solid #999;
 .pt-bottom {
   margin-top: 6rem;
 }
+
+.pt-action {
+  input[type="text"] {
+    width: 20%;
+  }
+}
