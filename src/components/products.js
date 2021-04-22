@@ -1,34 +1,47 @@
 const Products = ({ items, tax }) => (
   <div>
-    <div className="pt-p-header row my-3 text-center">
-      <div className="col-1">#</div>
-      <div className="col-5">Item / Description</div>
-      <div className="col-1">Quantity</div>
-      <div className="col-2">Price</div>
-      {/* <div className="col-1">Tax</div> */}
-      <div className="col-2">Total</div>
-    </div>
+    <table className="pt-products">
+      <thead>
+        <tr className="bg-secondary text-light">
+          <th>#</th>
+          <th>Item / Description</th>
+          <th className="text-right">Rate</th>
+          <th className="text-center">Quantity</th>
+          <th className="text-right">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((item, i) => {
+          const taxedPrice = (item.price / 100) * tax;
 
-    <div>
-      {items.map((item, i) => {
-        const taxedPrice = (item.price / 100) * tax;
-
-        return (
-          <div key={i} className="row text-center">
-            <div className="col-1">{i}</div>
-            <div className="col-5 text-left border-left">
-              {item.description}
-            </div>
-            <div className="col-1 border-left">{item.quantity}</div>
-            <div className="col-2 border-left">{item.price}</div>
-            {/* <div className="col-1 border-left">{taxedPrice.toFixed(2)}</div> */}
-            <div className="col-2 border-left">
-              {(item.price * item.quantity + taxedPrice).toFixed(2)}
-            </div>
-          </div>
-        );
-      })}
-    </div>
+          return (
+            <tr key={i}>
+              <td className="text-center border-right">
+                {i + 1}&#160;
+                <button className="btn btn-sm btn-light pt-no-print">
+                  &#10060;
+                </button>
+              </td>
+              <td className="text-left border-right">
+                &#8377;&#160;{item.description}
+              </td>
+              <td className="text-right border-right">
+                {item.price.toFixed(2)}
+              </td>
+              <td className="text-center border-right">{item.quantity}</td>
+              <td className="text-right">
+                &#8377;&#160;{(item.price * item.quantity).toFixed(2)}
+              </td>
+            </tr>
+          );
+        })}
+        <tr>
+          <td colSpan={5} className="border-top">
+            &#160;
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 );
 
