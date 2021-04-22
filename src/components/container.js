@@ -2,6 +2,7 @@ import React from "react";
 import "../static/styles/app.scss";
 import AddItem from "./add_item";
 import Aside from "./aside";
+import Customer from "./customer";
 import Header from "./header";
 import Products from "./products";
 import Summary from "./summary";
@@ -9,7 +10,8 @@ import Summary from "./summary";
 class Container extends React.Component {
   state = {
     items: [],
-    tax: 18
+    tax: 18,
+    customer: ""
   };
 
   count = 0;
@@ -19,12 +21,16 @@ class Container extends React.Component {
   };
 
   render() {
-    const { items, quantity, amount, tax } = this.state;
+    const { items, customer, tax } = this.state;
 
     return (
       <div className="container">
-        <Header />
+        {/* <Header /> */}
         <Aside tax={tax} updateTax={(tax) => this.updateState({ tax })} />
+        <Customer
+          customer={customer}
+          updateCustomer={(customer) => this.updateState({ customer })}
+        />
         <Products
           items={items}
           tax={tax}
