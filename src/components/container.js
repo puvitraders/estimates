@@ -38,13 +38,13 @@ class Container extends React.Component {
         />
 
         <Products
+          key={++this.count}
           items={items}
           tax={tax}
           updateItems={(items) => this.updateState({ items })}
         />
 
         <AddItem
-          key={++this.count}
           addNewItem={(item) => this.setState({ items: [...items, item] })}
         />
 
