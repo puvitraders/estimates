@@ -25,7 +25,7 @@ class Container extends React.Component {
 
     return (
       <div className="container">
-        {/* <Header /> */}
+        <Header />
         <Aside tax={tax} updateTax={(tax) => this.updateState({ tax })} />
         <Customer
           customer={customer}
