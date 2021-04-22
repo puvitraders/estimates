@@ -9,7 +9,7 @@ const Action = ({ tax, updateTax }) => {
   return (
     <div className="fixed-bottom py-3 px-5 row bg-light pt-no-print pt-action">
       <div className="col-3 offset-1">
-        <span>Tax rate</span>
+        <span>Tax rate:</span>
         <input
           type="text"
           className="ml-1 border-0 bg-transparent text-right"

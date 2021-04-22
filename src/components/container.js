@@ -2,7 +2,6 @@ import React from "react";
 import "../static/styles/app.scss";
 import Action from "./action";
 import AddItem from "./add_item";
-import Aside from "./aside";
 import Company from "./company";
 import Customer from "./customer";
 import Header from "./header";
@@ -31,7 +30,6 @@ class Container extends React.Component {
         <Header />
 
         <Company />
-        {/* <Aside tax={tax} updateTax={(tax) => this.updateState({ tax })} /> */}
 
         <Customer
           customer={customer}
