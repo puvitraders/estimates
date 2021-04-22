@@ -1,0 +1,68 @@
+$border: 1px solid #999;
+
+@media print {
+  .pt-no-print {
+    visibility: hidden;
+  }
+}
+
+.pt-company {
+  img {
+    width: 100%;
+  }
+}
+
+.pt-customer {
+  textarea {
+    resize: none;
+  }
+}
+
+.pt-aside {
+  width: 10%;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  section {
+    margin: 0.5rem 0;
+  }
+
+  label {
+    width: 30%;
+  }
+
+  input[type="text"] {
+    width: 45%;
+    text-align: right;
+  }
+}
+
+.pt-products {
+  width: 100%;
+
+  input[type="text"] {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 1rem;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: #f3f3f3;
+    }
+
+    &:last-child {
+      background-color: #fff;
+    }
+  }
+}
+
+.pt-bottom {
+  margin-top: 6rem;
+}
