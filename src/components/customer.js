@@ -1,20 +1,22 @@
 import { HeadLine } from "./common";
 import C from "../static/content/app";
+import { useRef, useState } from "react";
+import Modal from "./modal";
+import FormButtons from "./molecules/form_buttons";
 
-const Customer = ({ customer, setCustomer }) => (
+const Customer = () => (
   <div className="row my-5 pt-customer">
     <div className="col-4">
       <HeadLine>{C.CUSTOMER.BILL_TO}</HeadLine>
-      <div className="pt-customer-details" role="button">
-        {customer}
-      </div>
 
-      {/* <textarea
-        className="border-0 form-control"
-        rows={4}
-        onChange={(e) => setCustomer(e.target.value)}
-        value={customer}
-      /> */}
+      <div
+        className="pt-customer-details"
+        contentEditable
+        role="button"
+        data-tip="Click to edit"
+      >
+        This is it
+      </div>
     </div>
 
     <div className="col-3 offset-5 text-center">

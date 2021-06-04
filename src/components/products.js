@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { BsTrash } from "react-icons/bs";
-import { EditableContent, EditableDescription, EditableRate } from "./common";
 
 const defaultEdit = { i: null, f: null, v: null };
 
@@ -38,21 +37,8 @@ const Products = ({ items, updateItems }) => {
           {items.map((item, i) => (
             <tr key={i}>
               <td className="text-center border-right">{i + 1}&#160;</td>
-              <td
-                className="text-left border-right"
-                // onClick={() => edit({ i, f: "d", v: item.description })}
-              >
-                <EditableContent value={item.description} />
-                {/* {EditableDescription(item, i, ed, edit, save, defaultEdit)} */}
-              </td>
-              <td
-                className="text-right border-right w-20"
-                // onClick={() => edit({ i, f: "r", v: item.description })}
-              >
-                <EditableContent value={item.price} />
-                {/* &#8377;&#160;{item.price.toFixed(2)} */}
-                {/* {EditableRate(item, i, ed, edit, save, defaultEdit)} */}
-              </td>
+              <td className="text-left border-right" contentEditable></td>
+              <td className="text-right border-right w-20" contentEditable></td>
               <td className="text-center border-right">{item.quantity}</td>
               <td className="text-right">
                 &#8377;&#160;{(item.price * item.quantity).toFixed(2)}
@@ -66,12 +52,6 @@ const Products = ({ items, updateItems }) => {
               </td>
             </tr>
           ))}
-
-          <tr>
-            <td colSpan={5} className="border-top">
-              &#160;
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>

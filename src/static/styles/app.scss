@@ -18,7 +18,8 @@ body {
 
 .pt-customer {
   .pt-customer-details {
-    min-height: 10rem;
+    min-height: 6rem;
+    margin: 0.5rem;
   }
 }
 
@@ -61,10 +62,6 @@ body {
   tr {
     &:nth-child(even) {
       background-color: #f3f3f3;
-    }
-
-    &:last-child {
-      background-color: #fff;
     }
   }
 }
@@ -117,7 +114,8 @@ body {
   .m-content {
     position: fixed;
     background: white;
-    width: 80%;
+    min-width: 33rem;
+    // display: flex;
     height: auto;
     top: 50%;
     left: 50%;
