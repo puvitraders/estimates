@@ -1,61 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import "../static/styles/app.scss";
 import Action from "./action";
 import AddItem from "./add_item";
 import Company from "./company";
 import Customer from "./customer";
-import Header from "./header";
 import Products from "./products";
 import Summary from "./summary";
+import C from "../static/content/app";
+import Modal from "./modal";
 
-class Container extends React.Component {
-  state = {
-    items: [],
-    tax: 18,
-    customer: "",
-    date: new Date()
-  };
+const Container = () => {
+  const [items, setItems] = useState([]);
+  const [tax, setTax] = useState(C.TAX_RATE);
+  const [customer, setCustomer] = useState("");
+  const [showModal, toggleModal] = useState(false);
 
-  count = 0;
+  return (
+    <div className="container">
+      <header>
+        <h2 className="text-center m-3">Estimate</h2>
+      </header>
 
-  updateState = (s) => {
-    this.setState(s);
-  };
+      {/* <Modal isOpen={true} /> */}
 
-  render() {
-    const { items, customer, tax, date } = this.state;
+      <Company />
 
-    return (
-      <div className="container">
-        <Header />
+      <Customer customer={customer} setCustomer={setCustomer} />
 
-        <Company />
+      {/* <Products
+        key={++this.count}
+        items={items}
+        tax={tax}
+        updateItems={(items) => this.updateState({ items })}
+      /> */}
 
-        <Customer
-          customer={customer}
-          date={date}
-          updateCustomer={(customer) => this.updateState({ customer })}
-        />
+      {/* <AddItem
+        addNewItem={(item) => this.setState({ items: [...items, item] })}
+      /> */}
 
-        <Products
-          key={++this.count}
-          items={items}
-          tax={tax}
-          updateItems={(items) => this.updateState({ items })}
-        />
+      <Summary items={items} tax={tax} />
 
-        <AddItem
-          addNewItem={(item) => this.setState({ items: [...items, item] })}
-        />
+      <div className="pt-bottom">&#160;</div>
 
-        <Summary items={items} tax={tax} />
-
-        <div className="pt-bottom">&#160;</div>
-
-        <Action tax={tax} updateTax={(tax) => this.updateState({ tax })} />
-      </div>
-    );
-  }
-}
+      {/* <Action tax={tax} updateTax={(tax) => this.updateState({ tax })} /> */}
+    </div>
+  );
+};
 
 export default Container;

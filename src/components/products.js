@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BsTrash } from "react-icons/bs";
-import { EditableDescription } from "./common";
+import { EditableContent, EditableDescription, EditableRate } from "./common";
 
 const defaultEdit = { i: null, f: null, v: null };
 
@@ -8,11 +8,6 @@ const Products = ({ items, updateItems }) => {
   const lines = [...items];
 
   const [ed, edit] = useState({ ...defaultEdit });
-
-  const revert = () => {
-    console.log(defaultEdit, "calling edit now", { i: 234, f: 234, v: 234 });
-    edit(null);
-  };
 
   const save = () => {
     const field = ed.f === "d" ? "description" : "price";
@@ -45,14 +40,20 @@ const Products = ({ items, updateItems }) => {
               <td className="text-center border-right">{i + 1}&#160;</td>
               <td
                 className="text-left border-right"
-                onClick={() => edit({ i, f: "d", v: item.description })}
+                // onClick={() => edit({ i, f: "d", v: item.description })}
               >
-                {EditableDescription(item, i, ed, edit, save, defaultEdit)}
+                <EditableContent value={item.description} />
+                {/* {EditableDescription(item, i, ed, edit, save, defaultEdit)} */}
               </td>
-              <td className="text-right border-right">
-                &#8377;&#160;{item.price.toFixed(2)}
+              <td
+                className="text-right border-right w-20"
+                // onClick={() => edit({ i, f: "r", v: item.description })}
+              >
+                <EditableContent value={item.price} />
+                {/* &#8377;&#160;{item.price.toFixed(2)} */}
+                {/* {EditableRate(item, i, ed, edit, save, defaultEdit)} */}
               </td>
-              <td className="text-center border-right">{item.price}</td>
+              <td className="text-center border-right">{item.quantity}</td>
               <td className="text-right">
                 &#8377;&#160;{(item.price * item.quantity).toFixed(2)}
                 <button
