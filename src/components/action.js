@@ -1,9 +1,6 @@
-const Action = ({ tax, updateTax }) => {
+const Action = ({ tax, setTax }) => {
   const update = (e) => {
-    const tax = isNaN(parseInt(e.target.value))
-      ? 0
-      : parseFloat(e.target.value);
-    updateTax(tax);
+    setTax(isNaN(parseInt(e.target.value)) ? tax : parseInt(e.target.value));
   };
 
   return (

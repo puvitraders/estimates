@@ -7,14 +7,14 @@ const Products = ({ items, updateItems }) => {
 
   const parseRate = (rate, i) =>
     new RegExp("^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$").test(parseFloat(rate))
-      ? parseFloat(rate).toFixed(2)
+      ? parseFloat(rate)
       : items[i][RATE];
 
   const parseQty = (qty, i) =>
     isNaN(parseInt(qty)) ? items[i][QUANTITY] : parseInt(qty);
 
   const removeItem = (i) => {
-    if (window.confirm(`Remove item ${i}, "${items[i][DESCRIPTION]}"`)) {
+    if (window.confirm(`Remove item ${i + 1}, "${items[i][DESCRIPTION]}"`)) {
       lineItems.splice(i, 1);
       updateItems(lineItems);
     }
@@ -60,7 +60,7 @@ const Products = ({ items, updateItems }) => {
 
               <EditableTd
                 className="text-right border-right w-20"
-                content={item[RATE]}
+                content={item[RATE].toFixed(2)}
                 changeHandler={changeHandler.bind(null, RATE, i)}
               />
 
