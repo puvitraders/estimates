@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import "../static/styles/app.scss";
-// import Action from "./action";
 import Company from "./company";
 import Customer from "./customer";
 import Products from "./products";
-// import Summary from "./summary";
 import C from "../static/content/app";
-// import Modal from "./modal";
 import ReactTooltip from "react-tooltip";
+import crypto from "crypto";
+import { PRODUCT } from "../static/content/constants";
 
 const Container = () => {
   const [items, setItems] = useState([]);
-  const [tax, setTax] = useState(C.TAX_RATE);
-  const [count, setCount] = useState(0);
-
-  const bump = () => setCount(count + 1);
+  // const [tax, setTax] = useState(C.TAX_RATE);
 
   return (
     <div className="container">
@@ -26,12 +22,16 @@ const Container = () => {
 
       <Customer />
 
-      <Products key={count} items={items} tax={tax} updateItems={setItems} />
+      <Products
+        key={crypto.randomBytes(5)}
+        items={items}
+        updateItems={setItems}
+      />
 
       <div className="mt-3">
         <button
           className="btn btn-link pt-no-print"
-          onClick={setItems.bind(null, [...items, {}])}
+          onClick={setItems.bind(null, [...items, { ...PRODUCT }])}
         >
           + Add item
         </button>
@@ -41,7 +41,7 @@ const Container = () => {
 
       <div className="pt-bottom">&#160;</div>
 
-      <ReactTooltip key={count} />
+      <ReactTooltip key={crypto.randomBytes(6)} />
 
       {/* <Action tax={tax} updateTax={(tax) => this.updateState({ tax })} /> */}
     </div>

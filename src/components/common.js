@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GrSave, GrRevert } from "react-icons/gr";
 
-export const HeadLine = ({ classname, children }) => (
+export const HeadLine = ({ classname = "", children }) => (
   <div className={`bg-secondary text-light text-center py-1 ${classname}`}>
     {children}
   </div>

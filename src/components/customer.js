@@ -1,21 +1,13 @@
 import { HeadLine } from "./common";
 import C from "../static/content/app";
-import { useRef, useState } from "react";
-import Modal from "./modal";
-import FormButtons from "./molecules/form_buttons";
 
 const Customer = () => (
   <div className="row my-5 pt-customer">
     <div className="col-4">
       <HeadLine>{C.CUSTOMER.BILL_TO}</HeadLine>
 
-      <div
-        className="pt-customer-details"
-        contentEditable
-        role="button"
-        data-tip="Click to edit"
-      >
-        This is it
+      <div className="pt-customer-details" contentEditable role="button">
+        My Favourite customer
       </div>
     </div>
 
@@ -26,7 +18,7 @@ const Customer = () => (
 
       <HeadLine classname="mt-4">{C.CUSTOMER.ESTIMATE_ID}</HeadLine>
 
-      <div>{new Date().getTime()}</div>
+      <div>{`${new Date().getTime()}`.substr(4, 12)}</div>
     </div>
   </div>
 );
