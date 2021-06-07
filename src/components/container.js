@@ -35,6 +35,10 @@ const Container = () => {
 
       <Summary items={items} tax={tax} />
 
+      <div className="text-center mt-5 lead">
+        <em className="h5">Thank you for your business!</em>
+      </div>
+
       <div className="pt-bottom">&#160;</div>
 
       <Action tax={tax} setTax={setTax} />
