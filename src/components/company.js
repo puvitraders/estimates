@@ -17,7 +17,7 @@ const Company = () => (
       </section>
     </div>
 
-    <div className="col-3 offset-3">
+    <div className="col-2 offset-4">
       <img src={logo} alt="POOVI" />
     </div>
   </div>

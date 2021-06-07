@@ -1,54 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "../static/styles/app.scss";
-import AddItem from "./add_item";
-import Aside from "./aside";
 import Company from "./company";
 import Customer from "./customer";
-import Header from "./header";
 import Products from "./products";
+import C from "../static/content/app";
+import { PRODUCT } from "../static/content/constants";
+import Action from "./action";
 import Summary from "./summary";
 
-class Container extends React.Component {
-  state = {
-    items: [],
-    tax: 18,
-    customer: "",
-    date: new Date()
-  };
+const Container = () => {
+  const [items, setItems] = useState([]);
+  const [tax, setTax] = useState(C.TAX_RATE);
 
-  count = 0;
+  return (
+    <div className="container">
+      <header>
+        <h2 className="text-center m-3">Estimate</h2>
+      </header>
 
-  updateState = (s) => {
-    this.setState(s);
-  };
+      <Company />
 
-  render() {
-    const { items, customer, tax, date } = this.state;
+      <Customer />
 
-    return (
-      <div className="container">
-        <Header />
-        <Company />
-        <Aside tax={tax} updateTax={(tax) => this.updateState({ tax })} />
-        <Customer
-          customer={customer}
-          date={date}
-          updateCustomer={(customer) => this.updateState({ customer })}
-        />
-        <Products
-          items={items}
-          tax={tax}
-          updateItems={(items) => this.updateState({ items })}
-        />
-        <AddItem
-          key={++this.count}
-          addNewItem={(item) => this.setState({ items: [...items, item] })}
-        />
-        <Summary items={items} tax={tax} />
-        <div className="pt-bottom">&#160;</div>
+      <Products items={items} updateItems={setItems} />
+
+      <div className="mt-3">
+        <button
+          className="btn btn-link pt-no-print"
+          onClick={setItems.bind(null, [...items, { ...PRODUCT }])}
+        >
+          + Add item
+        </button>
       </div>
-    );
-  }
-}
+
+      <Summary items={items} tax={tax} />
+
+      <div className="text-center mt-5 lead">
+        <em className="h5">Thank you for your business!</em>
+      </div>
+
+      <div className="pt-bottom">&#160;</div>
+
+      <Action tax={tax} setTax={setTax} />
+    </div>
+  );
+};
 
 export default Container;

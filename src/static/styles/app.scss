@@ -13,8 +13,9 @@ $border: 1px solid #999;
 }
 
 .pt-customer {
-  textarea {
-    resize: none;
+  .pt-customer-details {
+    min-height: 6rem;
+    margin: 0.5rem;
   }
 }
 
@@ -41,10 +42,12 @@ $border: 1px solid #999;
 .pt-products {
   width: 100%;
 
-  input[type="text"] {
-    border: none;
-    background-color: transparent;
-    width: 100%;
+  .w-10 {
+    width: 10%;
+  }
+
+  .w-20 {
+    width: 20%;
   }
 
   th,
@@ -56,13 +59,62 @@ $border: 1px solid #999;
     &:nth-child(even) {
       background-color: #f3f3f3;
     }
-
-    &:last-child {
-      background-color: #fff;
-    }
   }
 }
 
 .pt-bottom {
   margin-top: 6rem;
+}
+
+.pt-action {
+  input[type="text"] {
+    width: 20%;
+  }
+}
+
+.pt-editable {
+  .inputs,
+  .buttons {
+    display: flex;
+
+    input,
+    button {
+      flex-grow: 1;
+    }
+  }
+
+  .wrap {
+    display: inline-block;
+    width: 100%;
+    height: 2rem;
+    cursor: pointer;
+  }
+}
+
+.m-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+
+  .m-close {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 0.25rem;
+  }
+
+  .m-content {
+    position: fixed;
+    background: white;
+    min-width: 33rem;
+    // display: flex;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

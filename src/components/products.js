@@ -1,54 +1,91 @@
-const Products = ({ items, tax }) => (
-  <div>
-    <table className="pt-products">
-      <thead>
-        <tr className="bg-secondary text-light text-center">
-          <th>#</th>
-          <th>Item / Description</th>
-          <th>Rate</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map((item, i) => {
-          const taxedPrice = (item.price / 100) * tax;
+import { BsTrash } from "react-icons/bs";
+import { DESCRIPTION, QUANTITY, RATE } from "../static/content/constants";
+import { EditableTd } from "./atomic/editable";
 
-          return (
+const Products = ({ items, updateItems }) => {
+  const lineItems = [...items];
+
+  const parseRate = (rate, i) =>
+    new RegExp("^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$").test(parseFloat(rate))
+      ? parseFloat(rate)
+      : items[i][RATE];
+
+  const parseQty = (qty, i) =>
+    isNaN(parseInt(qty)) ? items[i][QUANTITY] : parseInt(qty);
+
+  const removeItem = (i) => {
+    if (window.confirm(`Remove item ${i + 1}, "${items[i][DESCRIPTION]}"`)) {
+      lineItems.splice(i, 1);
+      updateItems(lineItems);
+    }
+  };
+
+  const changeHandler = (f, i, e) => {
+    switch (f) {
+      case DESCRIPTION:
+        lineItems[i][DESCRIPTION] = e.target.innerText;
+        break;
+      case RATE:
+        lineItems[i][RATE] = parseRate(e.target.innerText, i);
+        break;
+      default:
+        lineItems[i][QUANTITY] = parseQty(e.target.innerText, i);
+    }
+
+    updateItems(lineItems);
+  };
+
+  return (
+    <div>
+      <table className="pt-products">
+        <thead>
+          <tr className="bg-secondary text-light text-center">
+            <th className="w-10">#</th>
+            <th>Item / Description</th>
+            <th className="w-20">Rate</th>
+            <th className="w-10">Quantity</th>
+            <th className="w-20">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item, i) => (
             <tr key={i}>
               <td className="text-center border-right">{i + 1}&#160;</td>
-              <td className="text-left border-right">
-                <input
-                  type="text"
-                  value={item.description}
-                  onChange={() => {}}
-                />
-              </td>
-              <td className="text-right border-right">
-                &#8377;&#160;{item.price.toFixed(2)}
-              </td>
-              <td className="text-center border-right">{item.quantity}</td>
+
+              <EditableTd
+                className="text-left border-right"
+                content={item[DESCRIPTION]}
+                changeHandler={changeHandler.bind(null, DESCRIPTION, i)}
+              />
+
+              <EditableTd
+                className="text-right border-right w-20"
+                content={item[RATE].toFixed(2)}
+                changeHandler={changeHandler.bind(null, RATE, i)}
+              />
+
+              <EditableTd
+                className="text-center border-right"
+                content={item[QUANTITY]}
+                changeHandler={changeHandler.bind(null, QUANTITY, i)}
+              />
+
               <td className="text-right">
-                &#8377;&#160;{(item.price * item.quantity).toFixed(2)}
+                &#8377;&#160;{(item.rate * item.quantity).toFixed(2)}
                 <button
-                  className="btn btn-sm btn-light pt-no-print"
+                  className="btn btn-outline-danger border-0 pt-no-print"
                   title="Delete this item"
-                  onClick={() => {}}
+                  onClick={removeItem.bind(null, i)}
                 >
-                  &#10060;
+                  <BsTrash />
                 </button>
               </td>
             </tr>
-          );
-        })}
-        <tr>
-          <td colSpan={5} className="border-top">
-            &#160;
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-);
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 export default Products;
